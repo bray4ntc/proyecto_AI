@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Recomendación de Rutas</title>
+
+    <!-- Leaflet CSS para mostrar el mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Sistema de Recomendación de Rutas</h1>
+    
+    <!-- Contenedor del mapa -->
+    <div id="map" style="height: 500px; width: 100%;"></div>
+
+    <!-- Contenedor para los inputs de la ruta -->
+    <div class="input-container">
+        <label for="start">Punto de Inicio:</label>
+        <input type="text" id="start" placeholder="Ej. A">
+        <button id="use-current-location">Usar mi ubicación actual</button>
+        
+        <label for="end">Destino:</label>
+        <input type="text" id="end" placeholder="Ej. B">
+        
+        <button id="find-route">Buscar Ruta</button>
+    </div>
+
+    <!-- Contenedor para mostrar la ruta -->
+    <div id="route-output" style="margin-top: 20px; font-weight: bold;"></div>
+
+    <div id="route-info">
+        <p id="time-output">Tiempo estimado: --</p>
+        <p id="distance-output">Distancia: -- km</p>
+        <p id="weather-output">Clima: --</p>
+    </div>
+    <!-- Leaflet JS para el mapa -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- Archivo de la lógica de la aplicación -->
+    <script src="app.js"></script>
+
+    <!-- Script para asociar el botón con la función de búsqueda -->
+    <script>
+        document.getElementById('find-route').addEventListener('click', async () => {
+            await findBestRoute();
+        });
+    </script>
+</body>
+</html>
